@@ -7,13 +7,13 @@ const budgetModel = require("./models/budget_schema");
 const bodyParser = require("body-parser");
 app.use(bodyParser.json())
 
-let url = 'mongodb://localhost:27017/budget';
+let url = 'mongodb://localhost:27017/mongo_nodejs';
 
 app.use(cors());
 
 app.use('/', express.static('public'));
 
-app.get("/budget", (req, res) => {
+app.get("/mongo_nodejs", (req, res) => {
   mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
         .then(() => {
             console.log("Connected to the database");
@@ -37,7 +37,7 @@ app.put("/addEntry", (req, res) => {
             console.log("Connected to the database");
             newData = {
                 title: req.body.title,
-                related_value: req.body.related_value,
+                price: req.body.price,
                 color: req.body.color
             }
             budgetModel.insertMany(newData)

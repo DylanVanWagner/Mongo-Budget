@@ -1,4 +1,3 @@
-const { Int32 } = require("bson")
 const mongoose = require("mongoose")
 
 const colorValidator = (x) => (/^#([0-9a-f]{6})$/i).test(x);
@@ -8,7 +7,7 @@ const budgetSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    related_value: {
+    price: {
         type: Number,
         required: true
     },
@@ -17,6 +16,6 @@ const budgetSchema = new mongoose.Schema({
         validator: [colorValidator, 'Invalid color'],
         required: true
     }
-}, { collection: 'budget' })
+}, { collection: 'addEntry' })
 
-module.exports = mongoose.model('budget', budgetSchema)
+module.exports = mongoose.model('mongo_nodejs', budgetSchema)
